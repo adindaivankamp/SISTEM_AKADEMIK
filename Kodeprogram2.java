@@ -9,12 +9,14 @@ public class Kodeprogram2 {
         jumlahSiswa = input.nextInt();
 
         if (jumlahSiswa <= 0) {
-            System.out.println("Jumlah siswa harus lebih dari 0.");
-        } else {
-            for (int i = 0; i < jumlahSiswa; i++) {
+            System.out.println("Jumlah siswa harus lebih dari 0."); } 
+        else {
+            int i = 0;
+            while (i < jumlahSiswa) {
                 System.out.print("Masukkan nilai siswa ke-" + (i + 1) + ": ");
                 nilai = input.nextInt();
                 totalNilai += nilai;
+                i++;
             }
 
             rataRata = (double) totalNilai / jumlahSiswa;
@@ -23,4 +25,3 @@ public class Kodeprogram2 {
         }
     }
 }
-
