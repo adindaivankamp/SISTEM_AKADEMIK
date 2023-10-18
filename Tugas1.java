@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Daspro_Jobsheet3 {
+public class Tugas1 {
     public static void main (String[]args){
         Scanner sc = new Scanner(System.in);
         int NilaiTugas, NilaiKuis, NilaiUTS, NilaiUAS;
