@@ -12,8 +12,8 @@ public class SistemAkademik2 {
             System.out.println("Jumlah siswa harus lebih dari 0."); } 
         else {
             int i = 0;
-
-         {
+        
+      {
                 System.out.print("Masukkan nilai siswa ke-" + (i + 1) + ": ");
                 nilai = input.nextInt();
                 totalNilai += nilai;
