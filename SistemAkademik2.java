@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Kodeprogram2 {
+public class SistemAkademik2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int jumlahSiswa, nilai, totalNilai = 0;
