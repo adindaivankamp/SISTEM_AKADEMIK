@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Tugas1 {
+public class SistemAkademik1 {
     public static void main (String[]args){
         Scanner sc = new Scanner(System.in);
         int NilaiTugas, NilaiKuis, NilaiUTS, NilaiUAS;
