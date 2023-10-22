@@ -13,11 +13,9 @@ public class SistemAkademik2 {
         else {
             int i = 0; {
                 
-        System.out.print("Masukkan nilai siswa ke-" + (i + 1) + ": ");
-        nilai = input.nextInt();
-        totalNilai += nilai;
-        i++; 
-            }
+   System.out.print("Masukkan total nilai seluruh siswa : ");
+        totalNilai = input.nextInt();
+}
 
         rataRata = (double) totalNilai / jumlahSiswa;
 
