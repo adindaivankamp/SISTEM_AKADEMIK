@@ -1,0 +1,18 @@
+Algoritma: SistsemAkademik3
+
+Deklarasi:
+jumlahSiswa, nilai, totalNilai = 0  : int
+rataRata                            : double
+
+Deskripsi:
+If jumlahSiswa <= 0 Then
+    Output "Jumlah siswa harus lebih dari 0."
+Else
+    For i <- 1 to jumlahSiswa
+        Input nilai
+        totalNilai <- totalNilai + nilai
+    End For
+
+    rataRata <- totalNilai / jumlahSiswa
+    Output "Rata-rata nilai: " + rataRata
+End If
