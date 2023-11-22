@@ -21,6 +21,8 @@ public class SistemAkademik2 {
 
         System.out.println("Rata-rata nilai: " + rataRata);
         System.out.println("namaa");
+        System.out.println("jumlah siswa");
+        
         }
     }
 }
