@@ -20,6 +20,7 @@ public class SistemAkademik2 {
         rataRata = (double) totalNilai / jumlahSiswa;
 
         System.out.println("Rata-rata nilai: " + rataRata);
+        System.out.println("namaa");
         }
     }
 }
