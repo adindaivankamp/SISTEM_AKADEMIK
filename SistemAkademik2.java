@@ -13,13 +13,15 @@ public class SistemAkademik2 {
         else {
             int i = 0; {
                 
-        System.out.print("Masukkan total nilai seluruh siswa : ");
+    System.out.print("Masukkan total nilai seluruh siswa : ");
+    System.out.print("Masukkan total nilai seluruh siswa : ");
         totalNilai = input.nextInt();
 }
 
         rataRata = (double) totalNilai / jumlahSiswa ;
 
         System.out.println("Rata-rata nilai: " + rataRata);
+        System.out.println("namaa");
         }
     }
 }
