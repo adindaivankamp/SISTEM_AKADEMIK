@@ -12,7 +12,7 @@ public class SistemAkademik2 {
         while (true) {
             System.out.println("Menu Siakad ");
             System.out.println("1. Login");
-            System.out.println("2. Keluar");
+            System.out.println("2. Exit");
 
             System.out.print("Pilih menu (1/2): ");
             int pilihan = input.nextInt();
