@@ -31,6 +31,7 @@ public class SistemAkademik2 {
 
                         System.out.print("Masukkan jumlah siswa: ");
                         jumlahSiswa = input.nextInt();
+                        
 
                         if (jumlahSiswa <= 0) {
                             System.out.println("Jumlah siswa harus lebih dari 0.");
@@ -43,6 +44,7 @@ public class SistemAkademik2 {
                             }
 
                             rataRata = (double) totalNilai / jumlahSiswa;
+                            System.out.println("total nilai :" + totalNilai);
 
                             System.out.println("Rata-rata nilai: " + rataRata);
                         }
@@ -60,7 +62,7 @@ public class SistemAkademik2 {
         }
     }
 
-    private static String getJenisPengguna(String username) {
+     static String getJenisPengguna(String username) {
         if (username.endsWith("siswa")) {
             return "siswa";
         } else if (username.endsWith("guru")) {
@@ -70,7 +72,7 @@ public class SistemAkademik2 {
         }
     }
 
-    private static boolean isValidLogin(String jenisPengguna, String password) {
+    static boolean isValidLogin(String jenisPengguna, String password) {
         return password.equals(jenisPengguna + "123");
     }
 }
