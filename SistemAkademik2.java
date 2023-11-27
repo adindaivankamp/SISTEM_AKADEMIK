@@ -13,6 +13,7 @@ public class SistemAkademik2 {
             System.out.println("Menu Siakad ");
             System.out.println("1. Login");
             System.out.println("2. Keluar");
+
             System.out.print("Pilih menu (1/2): ");
             int pilihan = input.nextInt();
 
@@ -43,6 +44,7 @@ public class SistemAkademik2 {
                             }
 
                             rataRata = (double) totalNilai / jumlahSiswa;
+                            System.out.println("Total nilai: " + totalNilai);
 
                             System.out.println("Rata-rata nilai: " + rataRata);
                         }
