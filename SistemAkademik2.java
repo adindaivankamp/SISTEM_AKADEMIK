@@ -8,19 +8,6 @@ public class SistemAkademik2 {
 
         String username, password;
 
-<<<<<<< HEAD
-        if (jumlahSiswa <= 0) {
-            System.out.println("Jumlah siswa harus lebih dari 0."); } 
-        else {
-            int i = 0; {
-                
-    System.out.print("Masukkan total nilai seluruh siswa : ");
-    System.out.print("Masukkan total nilai seluruh siswa : ");
-        totalNilai = input.nextInt();
-}
-
-        rataRata = (double) totalNilai / jumlahSiswa ;
-=======
         // Loop menu
         while (true) {
             System.out.println("Menu Siakad ");
@@ -36,7 +23,6 @@ public class SistemAkademik2 {
                     username = input.next();
                     System.out.print("Masukkan password: ");
                     password = input.next();
-
 
                     String jenisPengguna = getJenisPengguna(username);
 
@@ -58,7 +44,7 @@ public class SistemAkademik2 {
                             }
 
                             rataRata = (double) totalNilai / jumlahSiswa;
-                            System.out.println("total nilai :" + totalNilai);
+                            System.out.println("total nilai:" + totalNilai);
 
                             System.out.println("Rata-rata nilai: " + rataRata);
                         }
@@ -90,4 +76,3 @@ public class SistemAkademik2 {
         return password.equals(jenisPengguna + "123");
     }
 }
-
