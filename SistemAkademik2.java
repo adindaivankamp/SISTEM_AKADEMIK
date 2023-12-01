@@ -52,7 +52,21 @@ public class SistemAkademik2 {
                         System.out.println("Login gagal. Username atau password salah.");
                     }
                     break;
+
                 case 2:
+                    System.out.println("Daftar Nilai:");
+                    for (int i = 0; i < nilai.length; i++) {
+                        for (int j = 0; j < nilai [i].length; j++) {
+                            if (nilai [i][j] != null) {
+                                System.out.println("Baris " + (i + 1) + ", Kolom " + (j + 1) + ": " + nilai [i][j]);
+                            } else {
+                                System.out.println("Baris " + (i + 1) + ", Kolom " + (j + 1) + ": ***");
+                            }
+                        }
+                    }
+                    break;
+
+                case 3:
                     System.out.println("Terima kasih. Program selesai.");
                     System.exit(0); // Keluar dari program
                     break;
