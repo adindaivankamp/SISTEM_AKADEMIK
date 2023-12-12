@@ -12,7 +12,8 @@ public class SistemAkademik2 {
         while (true) {
             System.out.println("Menu Siakad ");
             System.out.println("1. Login");
-            System.out.println("2. Keluar");
+            System.out.println("2. Exit");
+
             System.out.print("Pilih menu (1/2): ");
             int pilihan = input.nextInt();
 
@@ -45,14 +46,27 @@ public class SistemAkademik2 {
 
                             rataRata = (double) totalNilai / jumlahSiswa;
                             System.out.println("total nilai:" + totalNilai);
-
                             System.out.println("Rata-rata nilai: " + rataRata);
                         }
                     } else {
                         System.out.println("Login gagal. Username atau password salah.");
                     }
                     break;
+
                 case 2:
+                    System.out.println("Daftar Nilai:");
+                    for (int i = 0; i < nilai.length; i++) {
+                        for (int j = 0; j < nilai [i].length; j++) {
+                            if (nilai [i][j] != null) {
+                                System.out.println("Baris " + (i + 1) + ", Kolom " + (j + 1) + ": " + nilai [i][j]);
+                            } else {
+                                System.out.println("Baris " + (i + 1) + ", Kolom " + (j + 1) + ": ***");
+                            }
+                        }
+                    }
+                    break;
+
+                case 3:
                     System.out.println("Terima kasih. Program selesai.");
                     System.exit(0); // Keluar dari program
                     break;
