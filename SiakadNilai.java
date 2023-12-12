@@ -6,7 +6,7 @@ public class SiakadNilai {
         int jumlahSiswa;
         String username, password;
 
-        // Menyimpan siswa dan nilai
+        // Menyimpan nilai siswa 
         Siswa[] siswaArray = null;
 
         // Loop menu
@@ -32,10 +32,10 @@ public class SiakadNilai {
                         System.out.println("Login berhasil sebagai " + jenisPengguna + ".");
 
                         if (jenisPengguna.equals("siswa")) {
-                            // Siswa hanya bisa melihat transkrip
-                            tampilkanTranskripSiswa();
+                           
+                            
                         } else {
-                            // Guru bisa memasukkan nilai
+                           
                             System.out.print("Masukkan jumlah siswa: ");
                             jumlahSiswa = input.nextInt();
 
@@ -44,7 +44,7 @@ public class SiakadNilai {
                             } else {
                                 siswaArray = new Siswa[jumlahSiswa];
 
-                                // Memasukkan nilai dan menyimpan siswa
+                               
                                 for (int i = 0; i < jumlahSiswa; i++) {
                                     System.out.print("Masukkan nama siswa ke-" + (i + 1) + ": ");
                                     String namaSiswa = input.next();
@@ -63,7 +63,7 @@ public class SiakadNilai {
                     break;
 
                 case 2:
-                    // Fitur Lihat Transkrip untuk guru
+                 
                     if (siswaArray != null) {
                         tampilkanTranskripGuru(siswaArray);
                     } else {
@@ -82,7 +82,7 @@ public class SiakadNilai {
         }
     }
 
-    // Fungsi untuk menampilkan transkrip berdasarkan rata-rata nilai
+    
     public static void tampilkanTranskripGuru(Siswa[] siswaArray) {
         System.out.println("Transkrip Guru: ");
         for (Siswa siswa : siswaArray) {
@@ -90,17 +90,20 @@ public class SiakadNilai {
         }
     }
 
-    // Fungsi untuk menampilkan transkrip siswa
-    public static void tampilkanTranskripSiswa() {
-        System.out.println("Transkrip Siswa: Siswa tidak memiliki nilai saat ini.");
+ 
+    public static void tampilkanTranskripSiswa(Siswa[] siswaArray) {
+        System.out.println("Transkrip Siswa: ");
+        for (Siswa siswa : siswaArray) {
+            System.out.println("Nama: " + siswa.nama + ", Nilai: " + siswa.nilai + ", Transkrip: " + siswa.transkrip);
+        }
     }
 
-    // Fungsi untuk menghitung rata-rata nilai
+   
     public static double hitungRataRata(int totalNilai, int jumlahSiswa) {
         return (double) totalNilai / jumlahSiswa;
     }
 
-    // Fungsi untuk mendapatkan jenis pengguna berdasarkan username
+   
     static String getJenisPengguna(String username) {
         if (username.endsWith("siswa")) {
             return "siswa";
@@ -111,7 +114,7 @@ public class SiakadNilai {
         }
     }
 
-    // Fungsi untuk memvalidasi login
+  
     static boolean isValidLogin(String jenisPengguna, String password) {
         return password.equals(jenisPengguna + "123");
     }
@@ -126,11 +129,11 @@ class Siswa {
     public Siswa(String nama, int nilai) {
         this.nama = nama;
         this.nilai = nilai;
-        hitungTranskrip(); // Hitung transkrip setiap kali objek Siswa dibuat
+        hitungTranskrip(); 
     }
 
     // Metode untuk menghitung transkrip berdasarkan nilai
-    public void hitungTranskrip() {
+    private void hitungTranskrip() {
         if (nilai >= 80) {
             transkrip = "A";
         } else if (nilai >= 70) {
@@ -142,7 +145,7 @@ class Siswa {
         }
     }
 
-    // Metode untuk mendapatkan transkrip
+    
     public String getTranskrip() {
         return transkrip;
     }
