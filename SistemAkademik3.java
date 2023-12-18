@@ -11,7 +11,7 @@ public class SistemAkademik3 {
 
         // Loop menu
         while (true) {
-            System.out.println("- MENU SIAKAD NILAI -");
+            System.out.println("||| MENU SIAKAD NILAI |||");
             System.out.println("1. Login");
             System.out.println("2. Keluar");
             System.out.print("Pilih menu (1/2): ");
@@ -74,7 +74,7 @@ public class SistemAkademik3 {
     }
 
     public static void tampilkanTranskripGuru(Siswa[] siswaArray) {
-        System.out.println("Transkrip Guru: ");
+        System.out.println("Transkrip Dosen: ");
         for (Siswa siswa : siswaArray) {
             System.out.println("Nama: " + siswa.nama + ", Nilai: " + siswa.nilai + ", Transkrip: " + siswa.transkrip);
         }
@@ -94,8 +94,8 @@ public class SistemAkademik3 {
     static String getJenisPengguna(String username) {
         if (username.endsWith("siswa")) {
             return "siswa";
-        } else if (username.endsWith("guru")) {
-            return "guru";
+        } else if (username.endsWith("Dosen")) {
+            return "Dosen";
         } else {
             return null;
         }
@@ -133,5 +133,6 @@ class Siswa {
 
     public String getTranskrip() {
         return transkrip;
+        
     }
 }
