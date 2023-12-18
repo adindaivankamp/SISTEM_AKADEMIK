@@ -9,7 +9,7 @@ public class SistemAkademik3 {
         // Menyimpan nilai mahasiswa
         Mahasiswa[] mahasiswaArray = null;
 
-        // Loop menu
+        // Fitur menu
         while (true) {
             System.out.println("||| MENU SIAKAD NILAI |||");
             System.out.println("1. Login");
@@ -105,8 +105,8 @@ public class SistemAkademik3 {
         }
     }
 
-    // ... (Metode yang sama seperti sebelumnya)
 
+    
     static class Mahasiswa {
         String nama;
         int nilai;
@@ -114,8 +114,8 @@ public class SistemAkademik3 {
 
         // Konstruktor untuk menginisialisasi objek Mahasiswa
         public Mahasiswa(String nama, int nilai) {
-            nama = nama;
-            nilai = nilai;
+            this.nama = nama;
+            this.nilai = nilai;
             hitungTranskrip();
         }
 
