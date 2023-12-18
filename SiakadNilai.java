@@ -132,7 +132,7 @@ class Siswa {
         hitungTranskrip(); 
     }
 
-   
+    // Metode untuk menghitung transkrip berdasarkan nilai
     private void hitungTranskrip() {
         if (nilai >= 80) {
             transkrip = "A";
