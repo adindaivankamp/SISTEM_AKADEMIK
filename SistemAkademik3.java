@@ -113,8 +113,8 @@ class Siswa {
 
     // Konstruktor untuk menginisialisasi objek Siswa
     public Siswa(String nama, int nilai) {
-        this.nama = nama;
-        this.nilai = nilai;
+        nama = nama;
+        nilai = nilai;
         hitungTranskrip(); 
     }
 
