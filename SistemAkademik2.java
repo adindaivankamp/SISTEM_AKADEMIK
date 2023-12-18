@@ -3,18 +3,22 @@ import java.util.Scanner;
 public class SistemAkademik2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int jumlahSiswa, nilai, totalNilai = 0;
+        int jumlahSiswa, totalNilai = 0;
         double rataRata;
 
         String username, password;
+
+        // Declare nilai array
+        int[][] nilai = null;
 
         // Loop menu
         while (true) {
             System.out.println("Menu Siakad ");
             System.out.println("1. Login");
-            System.out.println("2. Exit");
+            System.out.println("2. Daftar Nilai");
+            System.out.println("3. Exit");
 
-            System.out.print("Pilih menu (1/2): ");
+            System.out.print("Pilih menu (1/2/3): ");
             int pilihan = input.nextInt();
 
             switch (pilihan) {
@@ -32,20 +36,31 @@ public class SistemAkademik2 {
 
                         System.out.print("Masukkan jumlah siswa: ");
                         jumlahSiswa = input.nextInt();
-                        
 
                         if (jumlahSiswa <= 0) {
                             System.out.println("Jumlah siswa harus lebih dari 0.");
                         } else {
-                            // Input nilai seluruh siswa baru
-                            for (int i = 1; i <= jumlahSiswa; i++) {
-                                System.out.print("Masukkan nilai siswa ke-" + i + ": ");
-                                nilai = input.nextInt();
-                                totalNilai += nilai;
+                            // Initialize nilai array
+                            nilai = new int[jumlahSiswa][];
+
+                            // Input nilai seluruh siswa
+                            for (int i = 0; i < jumlahSiswa; i++) {
+                                System.out.print("Masukkan jumlah nilai siswa ke-" + (i + 1) + ": ");
+                                int jumlahNilai = input.nextInt();
+
+                                // Initialize array for each student
+                                nilai[i] = new int[jumlahNilai];
+
+                                // Input nilai for each student
+                                for (int j = 0; j < jumlahNilai; j++) {
+                                    System.out.print("Masukkan nilai ke-" + (j + 1) + ": ");
+                                    nilai[i][j] = input.nextInt();
+                                    totalNilai += nilai[i][j];
+                                }
                             }
 
                             rataRata = (double) totalNilai / jumlahSiswa;
-                            System.out.println("total nilai:" + totalNilai);
+                            System.out.println("Total nilai: " + totalNilai);
                             System.out.println("Rata-rata nilai: " + rataRata);
                         }
                     } else {
@@ -54,29 +69,31 @@ public class SistemAkademik2 {
                     break;
 
                 case 2:
+                    // Daftar Nilai
                     System.out.println("Daftar Nilai:");
-                    for (int i = 0; i < nilai.length; i++) {
-                        for (int j = 0; j < nilai [i].length; j++) {
-                            if (nilai [i][j] != null) {
-                                System.out.println("Baris " + (i + 1) + ", Kolom " + (j + 1) + ": " + nilai [i][j]);
-                            } else {
-                                System.out.println("Baris " + (i + 1) + ", Kolom " + (j + 1) + ": ***");
+                    if (nilai != null) {
+                        for (int i = 0; i < nilai.length; i++) {
+                            for (int j = 0; j < nilai[i].length; j++) {
+                                System.out.println("Siswa " + (i + 1) + ", Nilai " + (j + 1) + ": " + nilai[i][j]);
                             }
                         }
+                    } else {
+                        System.out.println("Belum ada nilai yang dimasukkan.");
                     }
                     break;
 
                 case 3:
                     System.out.println("Terima kasih. Program selesai.");
-                    System.exit(0); // Keluar dari program
+                    System.exit(0);
                     break;
+
                 default:
                     System.out.println("Pilihan tidak valid. Silakan pilih lagi.");
             }
         }
     }
 
-     static String getJenisPengguna(String username) {
+    static String getJenisPengguna(String username) {
         if (username.endsWith("siswa")) {
             return "siswa";
         } else if (username.endsWith("guru")) {
