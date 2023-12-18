@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SistemAkademik3 {
+public class qwert {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int jumlahMahasiswa;
