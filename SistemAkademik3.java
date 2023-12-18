@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class SistemAkademik3 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int jumlahSiswa;
+        int jumlahMahasiswa;
         String username, password;
 
-        // Menyimpan nilai siswa
-        Siswa[] siswaArray = null;
+        // Menyimpan nilai mahasiswa
+        Mahasiswa[] mahasiswaArray = null;
 
         // Loop menu
         while (true) {
@@ -30,31 +30,31 @@ public class SistemAkademik3 {
                     if (jenisPengguna != null && isValidLogin(jenisPengguna, password)) {
                         System.out.println("Login berhasil sebagai " + jenisPengguna + ".");
 
-                        if (jenisPengguna.equals("siswa")) {
-                            if (siswaArray != null) {
-                                tampilkanTranskripSiswa(siswaArray);
+                        if (jenisPengguna.equals("Mahasiswa")) {
+                            if (mahasiswaArray != null) {
+                                tampilkanTranskripMahasiswa(mahasiswaArray);
                             } else {
-                                System.out.println("Belum ada data siswa dan nilai. Silakan masukkan data terlebih dahulu.");
+                                System.out.println("Belum ada data mahasiswa dan nilai. Silakan masukkan data terlebih dahulu.");
                             }
                         } else {
-                            System.out.print("Masukkan jumlah siswa: ");
-                            jumlahSiswa = input.nextInt();
+                            System.out.print("Masukkan jumlah mahasiswa: ");
+                            jumlahMahasiswa = input.nextInt();
 
-                            if (jumlahSiswa <= 0) {
-                                System.out.println("Jumlah siswa harus lebih dari 0.");
+                            if (jumlahMahasiswa <= 0) {
+                                System.out.println("Jumlah mahasiswa harus lebih dari 0.");
                             } else {
-                                siswaArray = new Siswa[jumlahSiswa];
+                                mahasiswaArray = new Mahasiswa[jumlahMahasiswa];
 
-                                for (int i = 0; i < jumlahSiswa; i++) {
-                                    System.out.print("Masukkan nama siswa ke-" + (i + 1) + ": ");
-                                    String namaSiswa = input.next();
-                                    System.out.print("Masukkan nilai siswa ke-" + (i + 1) + ": ");
-                                    int nilaiSiswa = input.nextInt();
+                                for (int i = 0; i < jumlahMahasiswa; i++) {
+                                    System.out.print("Masukkan nama mahasiswa ke-" + (i + 1) + ": ");
+                                    String namaMahasiswa = input.next();
+                                    System.out.print("Masukkan nilai mahasiswa ke-" + (i + 1) + ": ");
+                                    int nilaiMahasiswa = input.nextInt();
 
-                                    siswaArray[i] = new Siswa(namaSiswa, nilaiSiswa);
+                                    mahasiswaArray[i] = new Mahasiswa(namaMahasiswa, nilaiMahasiswa);
                                 }
 
-                                System.out.println("Data siswa dan nilai telah disimpan.");
+                                System.out.println("Data mahasiswa dan nilai telah disimpan.");
                             }
                         }
                     } else {
@@ -73,17 +73,10 @@ public class SistemAkademik3 {
         }
     }
 
-    public static void tampilkanTranskripGuru(Siswa[] siswaArray) {
+    public static void tampilkanTranskripDosen(Mahasiswa[] mahasiswaArray) {
         System.out.println("Transkrip Dosen: ");
-        for (Siswa siswa : siswaArray) {
-            System.out.println("Nama: " + siswa.nama + ", Nilai: " + siswa.nilai + ", Transkrip: " + siswa.transkrip);
-        }
-    }
-
-    public static void tampilkanTranskripSiswa(Siswa[] siswaArray) {
-        System.out.println("Transkrip Siswa: ");
-        for (Siswa siswa : siswaArray) {
-            System.out.println("Nama: " + siswa.nama + ", Nilai: " + siswa.nilai + ", Transkrip: " + siswa.transkrip);
+        for (Mahasiswa mahasiswa : mahasiswaArray) {
+            System.out.println("Nama: " + mahasiswa.getNama() + ", Nilai: " + mahasiswa.nilai + ", Transkrip: " + mahasiswa.transkrip);
         }
     }
 
@@ -92,8 +85,8 @@ public class SistemAkademik3 {
     }
 
     static String getJenisPengguna(String username) {
-        if (username.endsWith("siswa")) {
-            return "siswa";
+        if (username.endsWith("Mahasiswa")) {
+            return "Mahasiswa";
         } else if (username.endsWith("Dosen")) {
             return "Dosen";
         } else {
@@ -104,35 +97,47 @@ public class SistemAkademik3 {
     static boolean isValidLogin(String jenisPengguna, String password) {
         return password.equals(jenisPengguna + "123");
     }
-}
 
-class Siswa {
-    String nama;
-    int nilai;
-    String transkrip;
-
-    // Konstruktor untuk menginisialisasi objek Siswa
-    public Siswa(String nama, int nilai) {
-        nama = nama;
-        nilai = nilai;
-        hitungTranskrip(); 
-    }
-
-    // Metode untuk menghitung transkrip berdasarkan nilai
-    public void hitungTranskrip() {
-        if (nilai >= 80) {
-            transkrip = "A";
-        } else if (nilai >= 70) {
-            transkrip = "B";
-        } else if (nilai >= 60) {
-            transkrip = "C";
-        } else {
-            transkrip = "D";
+    public static void tampilkanTranskripMahasiswa(Mahasiswa[] mahasiswaArray) {
+        System.out.println("Transkrip Mahasiswa: ");
+        for (Mahasiswa mahasiswa : mahasiswaArray) {
+            System.out.println("Nama: " + mahasiswa.getNama() + ", Nilai: " + mahasiswa.nilai + ", Transkrip: " + mahasiswa.transkrip);
         }
     }
 
-    public String getTranskrip() {
-        return transkrip;
-        
+    // ... (Metode yang sama seperti sebelumnya)
+
+    static class Mahasiswa {
+        String nama;
+        int nilai;
+        String transkrip;
+
+        // Konstruktor untuk menginisialisasi objek Mahasiswa
+        public Mahasiswa(String nama, int nilai) {
+            nama = nama;
+            nilai = nilai;
+            hitungTranskrip();
+        }
+
+        // Metode untuk menghitung transkrip berdasarkan nilai
+        public void hitungTranskrip() {
+            if (nilai >= 80) {
+                transkrip = "A";
+            } else if (nilai >= 70) {
+                transkrip = "B";
+            } else if (nilai >= 60) {
+                transkrip = "C";
+            } else {
+                transkrip = "D";
+            }
+        }
+
+        public String getTranskrip() {
+            return transkrip;
+        }
+
+        public String getNama() {
+            return nama;
+        }
     }
 }
