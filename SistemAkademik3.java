@@ -9,7 +9,7 @@ public class SistemAkademik3 {
         // Menyimpan nilai siswa
         Siswa[] siswaArray = null;
 
-        // Loop menu
+        // Fitur menu
         while (true) {
             System.out.println("||| MENU SIAKAD NILAI |||");
             System.out.println("1. Login");
@@ -131,8 +131,45 @@ class Siswa {
         }
     }
 
+<<<<<<< HEAD
     public String getTranskrip() {
         return transkrip;
         
+=======
+
+    
+    static class Mahasiswa {
+        String nama;
+        int nilai;
+        String transkrip;
+
+        // Konstruktor untuk menginisialisasi objek Mahasiswa
+        public Mahasiswa(String nama, int nilai) {
+            this.nama = nama;
+            this.nilai = nilai;
+            hitungTranskrip();
+        }
+
+        // Metode untuk menghitung transkrip berdasarkan nilai
+        public void hitungTranskrip() {
+            if (nilai >= 80) {
+                transkrip = "A";
+            } else if (nilai >= 70) {
+                transkrip = "B";
+            } else if (nilai >= 60) {
+                transkrip = "C";
+            } else {
+                transkrip = "D";
+            }
+        }
+
+        public String getTranskrip() {
+            return transkrip;
+        }
+
+        public String getNama() {
+            return nama;
+        }
+>>>>>>> 8bf7acc16cb492a193ed415b748e50a1f52a4149
     }
 }
