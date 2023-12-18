@@ -114,8 +114,8 @@ public class SistemAkademik3 {
 
         // Konstruktor untuk menginisialisasi objek Mahasiswa
         public Mahasiswa(String nama, int nilai) {
-            this.nama = nama;
-            this.nilai = nilai;
+           this.nama = nama;
+              this.nilai = nilai;
             hitungTranskrip();
         }
 
