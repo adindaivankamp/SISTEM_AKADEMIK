@@ -74,11 +74,9 @@ public class qwert {
                             tampilkanSubMenuDosen(input, mahasiswaArray);
                         } else {
                             System.out.println("Login gagal. Username atau password salah.");
-                        }
-                    }
-                    break;
-
-                case 2:
+                        }                    
+                        }    break; 
+                case 2: 
                     System.out.println("Terima kasih. Program selesai.");
                     System.exit(0); // Keluar dari program
                     break;
@@ -176,9 +174,18 @@ public class qwert {
         }
 
         public String getTranskrip() {
-            // Implementasi logika transkrip di sini
-            // Anda dapat mengembalikan representasi string transkrip berdasarkan kebutuhan Anda
-            return "Transkrip Mahasiswa";
+            StringBuilder transkrip = new StringBuilder("Transkrip Mahasiswa:\n");
+        
+            transkrip.append("Nama: ").append(nama).append("\n");
+            transkrip.append("Mata Kuliah:\n");
+        
+            for (int i = 0; i < mataKuliah.length; i++) {
+                transkrip.append("\t").append(mataKuliah[i]).append(": ").append(nilai[i]).append("\n");
+            }
+        
+            transkrip.append("Rata-rata Nilai: ").append(getRataRata()).append("\n");
+        
+            return transkrip.toString();
         }
 
         public String getNama() {
