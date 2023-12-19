@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 import java.util.Scanner;
 
 public class SistemAkademik2 {
@@ -109,4 +108,4 @@ public class SistemAkademik2 {
         return password.equals(jenisPengguna + "123");
     }
 }
->>>>>>> 96aa9e40f37ca7073a706998c6968ac7ffde0bfe
+

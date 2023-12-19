@@ -119,7 +119,7 @@ public class SiakadNilaii{
                     } else {
                         System.out.println("Belum ada data mahasiswa dan nilai. Silakan masukkan data terlebih dahulu.");
                     }
-                    break;
+                    break;]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
                 case 3:
 =======
