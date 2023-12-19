@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class SiakadNilai {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner g = new Scanner(System.in);
         int jumlahSiswa;
         String username, password;
 
