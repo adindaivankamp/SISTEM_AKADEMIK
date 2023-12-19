@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SiakadNilaii {
+public class Bismillah {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int jumlahMahasiswa;
@@ -51,7 +51,16 @@ public class SiakadNilaii {
                 }
             }
         }
-
+        public static String getJenisPengguna(String username) {
+            if (username.endsWith("Mahasiswa")) {
+                return "Mahasiswa";
+            } else if (username.endsWith("Dosen")) {
+                return "Dosen";
+            } else {
+                return null;
+            }
+        }
+    
         public static boolean isValidLogin(String jenisPengguna, String password) {
             return password.equals(jenisPengguna + "123");
         }    
@@ -59,12 +68,12 @@ public class SiakadNilaii {
         public static void tampilkanSubMenuDosen(Scanner input, Mahasiswa[] mahasiswaArray) {
             // Dosen memiliki submenu sendiri
             while (true) {
-                System.out.println("1. Input Nilai Mahasiswa");
+                System.out.println("1. Input Nilai dan  Mahasiswa");
                 System.out.println("2. Update Nilai Mahasiswa");
-                System.out.println("3. Presensi Mahasiswa");
-                System.out.println("4. Lihat Transkrip Mahasiswa");
+                System.out.println("3. Lihat Transkrip Nilai dan Rata - rata Mahasiswa");
+                System.out.println("4. Pencarian");
                 System.out.println("5. Kembali ke Menu Utama");
-                System.out.print("Pilih submenu (1/2/3/4): ");
+                System.out.print("Pilih submenu (1/2/3/4/5): ");
                 int submenuPilihan = input.nextInt();
 
                 switch (submenuPilihan) {
@@ -75,11 +84,21 @@ public class SiakadNilaii {
                     updateNilaiMahasiswa(input, null);
                     break ;
                     case 3:
-                    
+                    tandaiKehadiran(null);
                     case 4:
+                    tampilkanTranskripDosen(null);
+                    break;
+                    case 5:
+                    break;
+                    case 6:
+                    return kembali ke menu awal
+
                 }
             }
         }
+
+
+
 
     public static void inputMahasiswa(Scanner input) {
         System.out.print("Masukkan jumlah mahasiswa: ");
@@ -110,10 +129,25 @@ public class SiakadNilaii {
                 System.out.print("Masukkan nilai untuk mata kuliah " +
                         mahasiswaArray[i].getMataKuliah()[j] + ": ");
                 mahasiswaArray[i].getNilai()[j] = input.nextInt();
+
+                public double getRataRata() {
+                    if (nilai.length == 0) {
+                        return 0.0;
+                    }
+        
+                    int totalNilai = 0;
+                    for (int n : nilai) {
+                        totalNilai += n;
+                    }
+        
+                    return (double) totalNilai / nilai.length;
+                }
+        
+        
             }
         }
     }
-           public static void updateNilaiMahasiswa(Scanner input, Mahasiswa[] mahasiswaArray) {
+        public static void updateNilaiMahasiswa(Scanner input, Mahasiswa[] mahasiswaArray) {
         System.out.print("Masukkan nama mahasiswa yang akan diupdate nilai: ");
         String targetNama = input.next();
 
@@ -147,7 +181,35 @@ public class SiakadNilaii {
             System.out.println("Mahasiswa tidak ditemukan.");
         }
     }
+    public static void tandaiKehadiran(Mahasiswa[] arrayMahasiswa) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Tandai Kehadiran: ");
+        for (int i = 0; i < arrayMahasiswa.length; i++) {
+            System.out.print("Apakah " + arrayMahasiswa[i].getNama() + " hadir? (ya/tidak): ");
+            String statusKehadiran = input.next().toLowerCase();
+            arrayMahasiswa[i].setKehadiran(statusKehadiran.equals("ya"));
+        }
+    }
 
+
+        public static void tampilkanSubMenuMahasiswa(Scanner input, Mahasiswa[] mahasiswaArray) {
+            while (true) {
+                System.out.println("1. Lihat transkrip nilai dan Rata - rata");
+                System.out.println("2. Pencarian");
+                System.out.println("3. Kembali ke menu utama");
+                System.out.print("Pilih submenu (1/2): ");
+                int submenuPilihan = input.nextInt();
+
+                switch (submenuPilihan) {
+                    case 1:
+
+                    break ;
+                    case 2:
+                    case 3:
+                    return kembali ke menu utama
+
+                }
+            }
     public static void tampilkanTranskripDosen(Mahasiswa[] mahasiswaArray) {
         System.out.println("Transkrip Dosen: ");
         if (mahasiswaArray != null) {
@@ -160,3 +222,5 @@ public class SiakadNilaii {
             System.out.println("Belum ada data mahasiswa. Silakan masukkan data terlebih dahulu.");
         }
     }
+        }
+
