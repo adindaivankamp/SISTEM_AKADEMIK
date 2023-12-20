@@ -1,91 +1,71 @@
-
 import java.util.Scanner;
 
 public class SistemAkademik2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int jumlahSiswa, totalNilai = 0;
-        double rataRata;
-
+        int jumlahMahasiswa;
         String username, password;
 
-        // Declare nilai array
-        int[][] nilai = null;
+        // Array untuk menyimpan data mahasiswa
+        Mahasiswa[] arrayMahasiswa = null;
 
         // Loop menu
         while (true) {
-            System.out.println("Menu Siakad ");
-            System.out.println("1. Login");
-            System.out.println("2. Daftar Nilai");
-            System.out.println("3. Exit");
-
-            System.out.print("Pilih menu (1/2/3): ");
+            System.out.println("||| SISTEM AKADEMIK |||");
+            System.out.println("1. Masuk");
+            System.out.println("2. Keluar");
+            System.out.print("Pilih menu (1/2): ");
             int pilihan = input.nextInt();
 
             switch (pilihan) {
                 case 1:
-                    // Fitur Login
-                    System.out.print("Masukkan username: ");
+                    // Fitur Masuk
+                    System.out.print("Masukkan nama pengguna: ");
                     username = input.next();
-                    System.out.print("Masukkan password: ");
+                    System.out.print("Masukkan kata sandi: ");
                     password = input.next();
 
-                    String jenisPengguna = getJenisPengguna(username);
+                    String jenisPengguna = dapatkanJenisPengguna(username);
 
                     if (jenisPengguna != null && isValidLogin(jenisPengguna, password)) {
-                        System.out.println("Login berhasil sebagai " + jenisPengguna + ".");
+                        System.out.println("Masuk berhasil sebagai " + jenisPengguna + ".");
 
-                        System.out.print("Masukkan jumlah siswa: ");
-                        jumlahSiswa = input.nextInt();
-
-                        if (jumlahSiswa <= 0) {
-                            System.out.println("Jumlah siswa harus lebih dari 0.");
-                        } else {
-                            // Initialize nilai array
-                            nilai = new int[jumlahSiswa][];
-
-                            // Input nilai seluruh siswa
-                            for (int i = 0; i < jumlahSiswa; i++) {
-                                System.out.print("Masukkan jumlah nilai siswa ke-" + (i + 1) + ": ");
-                                int jumlahNilai = input.nextInt();
-
-                                // Initialize array for each student
-                                nilai[i] = new int[jumlahNilai];
-
-                                // Input nilai for each student
-                                for (int j = 0; j < jumlahNilai; j++) {
-                                    System.out.print("Masukkan nilai ke-" + (j + 1) + ": ");
-                                    nilai[i][j] = input.nextInt();
-                                    totalNilai += nilai[i][j];
-                                }
+                        if (jenisPengguna.equals("Mahasiswa")) {
+                            if (arrayMahasiswa != null) {
+                                tampilkanTranskripMahasiswa(arrayMahasiswa);
+                                tandaiKehadiran(arrayMahasiswa);
+                            } else {
+                                System.out.println("Tidak ada data mahasiswa dan nilai. Silakan masukkan data terlebih dahulu.");
                             }
+                        } else {
+                            System.out.print("Masukkan jumlah mahasiswa: ");
+                            jumlahMahasiswa = input.nextInt();
 
-                            rataRata = (double) totalNilai / jumlahSiswa;
-                            System.out.println("Total nilai: " + totalNilai);
-                            System.out.println("Rata-rata nilai: " + rataRata);
+                            if (jumlahMahasiswa <= 0) {
+                                System.out.println("Jumlah mahasiswa harus lebih dari 0.");
+                            } else {
+                                arrayMahasiswa = new Mahasiswa[jumlahMahasiswa];
+
+                                for (int i = 0; i < jumlahMahasiswa; i++) {
+                                    System.out.print("Masukkan nama mahasiswa ke-" + (i + 1) + ": ");
+                                    String namaMahasiswa = input.next();
+                                    System.out.print("Masukkan nilai mahasiswa ke-" + (i + 1) + ": ");
+                                    int nilaiMahasiswa = input.nextInt();
+
+                                    arrayMahasiswa[i] = new Mahasiswa(namaMahasiswa, nilaiMahasiswa);
+                                }
+
+                                System.out.println("Data mahasiswa dan nilai telah disimpan.");
+                            }
                         }
                     } else {
-                        System.out.println("Login gagal. Username atau password salah.");
+                        System.out.println("Masuk gagal. Nama pengguna atau kata sandi salah.");
                     }
                     break;
 
                 case 2:
-                    // Daftar Nilai
-                    System.out.println("Daftar Nilai:");
-                    if (nilai != null) {
-                        for (int i = 0; i < nilai.length; i++) {
-                            for (int j = 0; j < nilai[i].length; j++) {
-                                System.out.println("Siswa " + (i + 1) + ", Nilai " + (j + 1) + ": " + nilai[i][j]);
-                            }
-                        }
-                    } else {
-                        System.out.println("Belum ada nilai yang dimasukkan.");
-                    }
-                    break;
-
-                case 3:
                     System.out.println("Terima kasih. Program selesai.");
-                    System.exit(0);
+                    System.exit(0); // Keluar dari program
                     break;
 
                 default:
@@ -94,11 +74,22 @@ public class SistemAkademik2 {
         }
     }
 
-    static String getJenisPengguna(String username) {
-        if (username.endsWith("siswa")) {
-            return "siswa";
-        } else if (username.endsWith("guru")) {
-            return "guru";
+    public static void tampilkanTranskripDosen(Mahasiswa[] arrayMahasiswa) {
+        System.out.println("Transkrip Dosen: ");
+        for (Mahasiswa mahasiswa : arrayMahasiswa) {
+            System.out.println("Nama: " + mahasiswa.getNama() + ", Nilai: " + mahasiswa.nilai + ", Transkrip: " + mahasiswa.transkrip);
+        }
+    }
+
+    public static double hitungRataRata(int totalNilai, int jumlahMahasiswa) {
+        return (double) totalNilai / jumlahMahasiswa;
+    }
+
+    static String dapatkanJenisPengguna(String username) {
+        if (username.endsWith("Mahasiswa")) {
+            return "Mahasiswa";
+        } else if (username.endsWith("Dosen")) {
+            return "Dosen";
         } else {
             return null;
         }
@@ -107,5 +98,64 @@ public class SistemAkademik2 {
     static boolean isValidLogin(String jenisPengguna, String password) {
         return password.equals(jenisPengguna + "123");
     }
-}
 
+    public static void tampilkanTranskripMahasiswa(Mahasiswa[] arrayMahasiswa) {
+        System.out.println("Transkrip Mahasiswa: ");
+        for (Mahasiswa mahasiswa : arrayMahasiswa) {
+            System.out.println("Nama: " + mahasiswa.getNama() + ", Nilai: " + mahasiswa.nilai + ", Transkrip: " + mahasiswa.transkrip);
+        }
+    }
+
+    public static void tandaiKehadiran(Mahasiswa[] arrayMahasiswa) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Tandai Kehadiran: ");
+        for (int i = 0; i < arrayMahasiswa.length; i++) {
+            System.out.print("Apakah " + arrayMahasiswa[i].getNama() + " hadir? (ya/tidak): ");
+            String statusKehadiran = input.next().toLowerCase();
+            arrayMahasiswa[i].setKehadiran(statusKehadiran.equals("ya"));
+        }
+    }
+
+    static class Mahasiswa {
+        String nama;
+        int nilai;
+        String transkrip;
+        boolean hadir;
+
+        // Konstruktor untuk menginisialisasi objek Mahasiswa
+        public Mahasiswa(String nama, int nilai) {
+            this.nama = nama;
+            this.nilai = nilai;
+            hitungTranskrip();
+        }
+
+        // Metode untuk menghitung transkrip berdasarkan nilai
+        public void hitungTranskrip() {
+            if (nilai >= 80) {
+                transkrip = "A";
+            } else if (nilai >= 70) {
+                transkrip = "B";
+            } else if (nilai >= 60) {
+                transkrip = "C";
+            } else {
+                transkrip = "D";
+            }
+        }
+
+        public String getTranskrip() {
+            return transkrip;
+        }
+
+        public String getNama() {
+            return nama;
+        }
+
+        public boolean isHadir() {
+            return hadir;
+        }
+
+        public void setKehadiran(boolean hadir) {
+            this.hadir = hadir;
+        }
+    }
+}

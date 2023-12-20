@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SiakadNilaii {
+public class Bismillah {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int jumlahMahasiswa;
@@ -16,7 +16,7 @@ public class SiakadNilaii {
             System.out.println("2. Keluar");
             System.out.print("Pilih menu (1/2): ");
             int pilihan = input.nextInt();
-                    
+
             switch (pilihan) {
                 case 1:
                     // Fitur Login
@@ -32,12 +32,11 @@ public class SiakadNilaii {
 
                         // Setelah berhasil login tampilkan submenu sesuai jenis pengguna
                         if (jenisPengguna.equals("Mahasiswa"))
-                            tampilkanSubMenuMahasiswa(mahasiswaArray);
-                        } else if (jenisPengguna.equals("Dosen")) {
+                            tampilkanSubMenuMahasiswa(input, mahasiswaArray);
+                        else if (jenisPengguna.equals("Dosen"))
                             tampilkanSubMenuDosen(input, mahasiswaArray);
-                        } else {
+                        else
                             System.out.println("Login gagal. Username atau password salah.");
-                        }
                     }
                     break;
 
@@ -46,47 +45,65 @@ public class SiakadNilaii {
                     System.exit(0); // Keluar dari program
                     break;
 
-                    default:
-                    System.out.println("Pilihan tidak valid. Silakan pilih lagi.") ;
-                }
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan pilih lagi.");
+                    break;
             }
         }
+    }
 
-        public static boolean isValidLogin(String jenisPengguna, String password) {
-            return password.equals(jenisPengguna + "123");
-        }    
+    public static String getJenisPengguna(String username) {
+        if (username.endsWith("Mahasiswa")) {
+            return "Mahasiswa";
+        } else if (username.endsWith("Dosen")) {
+            return "Dosen";
+        } else {
+            return null;
+        }
+    }
 
-        public static void tampilkanSubMenuDosen(Scanner input, Mahasiswa[] mahasiswaArray) {
-            // Dosen memiliki submenu sendiri
-            while (true) {
-                System.out.println("1. Input Nilai Mahasiswa");
-                System.out.println("2. Update Nilai Mahasiswa");
-                System.out.println("3. Presensi Mahasiswa");
-                System.out.println("4. Lihat Transkrip Mahasiswa");
-                System.out.println("5. Kembali ke Menu Utama");
-                System.out.print("Pilih submenu (1/2/3/4): ");
-                int submenuPilihan = input.nextInt();
+    public static boolean isValidLogin(String jenisPengguna, String password) {
+        return password.equals(jenisPengguna + "123");
+    }
 
-                switch (submenuPilihan) {
-                    case 1:
-                    inputMahasiswa(input);
-                    break ;
-                    case 2:
-                    updateNilaiMahasiswa(input, null);
-                    break ;
-                    case 3:
-                    
-                    case 4:
-                }
+    public static void tampilkanSubMenuDosen(Scanner input, Mahasiswa[] mahasiswaArray) {
+        while (true) {
+            System.out.println("1. Input Nilai dan Mahasiswa");
+            System.out.println("2. Update Nilai Mahasiswa");
+            System.out.println("3. Lihat Transkrip Nilai dan Rata-rata Mahasiswa");
+            System.out.println("4. Pencarian");
+            System.out.println("5. Kembali ke Menu Utama");
+            System.out.print("Pilih submenu (1/2/3/4/5): ");
+            int submenuPilihan = input.nextInt();
+
+            switch (submenuPilihan) {
+                case 1:
+                    inputMahasiswa(input, mahasiswaArray);
+                    break;
+                case 2:
+                    updateNilaiMahasiswa(input, mahasiswaArray);
+                    break;
+                case 3:
+                    tampilkanTranskripDosen(mahasiswaArray);
+                    break;
+                case 4:
+                    cariMahasiswa(mahasiswaArray);
+                    break;
+                case 5:
+                    return; // kembali ke menu utama
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan pilih lagi.");
+                    break;
             }
         }
+    }
 
-    public static void inputMahasiswa(Scanner input) {
+    public static void inputMahasiswa(Scanner input, Mahasiswa[] mahasiswaArray) {
         System.out.print("Masukkan jumlah mahasiswa: ");
         int jumlahMahasiswa = input.nextInt();
 
         // Inisialisasi array mahasiswa berdasarkan jumlah siswa yang dimasukkan
-        Mahasiswa[] mahasiswaArray = new Mahasiswa[jumlahMahasiswa];
+        mahasiswaArray = new Mahasiswa[jumlahMahasiswa];
 
         // Loop untuk memasukkan data mahasiswa
         for (int i = 0; i < jumlahMahasiswa; i++) {
@@ -113,7 +130,8 @@ public class SiakadNilaii {
             }
         }
     }
-           public static void updateNilaiMahasiswa(Scanner input, Mahasiswa[] mahasiswaArray) {
+
+    public static void updateNilaiMahasiswa(Scanner input, Mahasiswa[] mahasiswaArray) {
         System.out.print("Masukkan nama mahasiswa yang akan diupdate nilai: ");
         String targetNama = input.next();
 
@@ -160,3 +178,56 @@ public class SiakadNilaii {
             System.out.println("Belum ada data mahasiswa. Silakan masukkan data terlebih dahulu.");
         }
     }
+
+    public static void cariMahasiswa(Mahasiswa[] arrayMahasiswa) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Masukkan nama mahasiswa yang ingin dicari: ");
+        String namaCari = input.next().toLowerCase();
+
+        boolean ditemukan = false;
+
+        for (Mahasiswa mahasiswa : arrayMahasiswa) {
+            if (mahasiswa.getNama().toLowerCase().contains(namaCari)) {
+                System.out.println("Mahasiswa ditemukan:");
+                System.out.println("Nama: " + mahasiswa.getNama() + ", Nilai: " + mahasiswa.getRataRata() + ", Transkrip: " + mahasiswa.getTranskrip());
+                ditemukan = true;
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Mahasiswa dengan nama '" + namaCari + "' tidak ditemukan.");
+        }
+    }
+}
+
+class Mahasiswa {
+    private String nama;
+    private int[] nilai;
+    private String[] mataKuliah;
+
+    // ... (tambahkan konstruktor, getter, setter, dan metode lainnya sesuai kebutuhan)
+
+    public double getRataRata() {
+        if (nilai.length == 0) {
+            return 0.0;
+        }
+
+        int totalNilai = 0;
+        for (int n : nilai) {
+            totalNilai += n;
+        }
+
+        return (double) totalNilai / nilai.length;
+    }
+
+    public void hitungTranskrip() {
+        // implementasi logika perhitungan transkrip berdasarkan nilai
+    }
+
+    public String getTranskrip() {
+        // implementasi mendapatkan transkrip berdasarkan nilai
+        return "";
+    }
+
+    // ... (tambahkan metode getter, setter, dan lainnya sesuai kebutuhan)
+}

@@ -225,3 +225,20 @@ public class qwert {
         }
     }
 }
+
+
+public class qwert {
+    // ... (existing code)
+
+    public void hitungTranskrip() {
+        if (nilai >= 80) {
+            transkrip = "A";
+        } else if (nilai >= 70) {
+            transkrip = "B";
+        } else if (nilai >= 60) {
+            transkrip = "C";
+        } else {
+            transkrip = "D";
+        }
+    }
+}

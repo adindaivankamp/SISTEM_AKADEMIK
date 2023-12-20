@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class kodeprogram7 {
+public class kodeprogram7{
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int jumlahMahasiswa;
-        String username, password;
+         String username, password;
 
         // Menyimpan nilai mahasiswa
         Mahasiswa[] mahasiswaArray = null;
